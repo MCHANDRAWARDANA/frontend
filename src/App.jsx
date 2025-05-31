@@ -10,17 +10,15 @@ import DataManagement from "./components/menu/DataManagement";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />} />
-        <Route path="/StaffDashboard" element={<StaffDashboard />} />
-        <Route path="/RegistrasiPetugas" element={<RegistrasiPetugas />} />
-        <Route path="/StockManagement" element={<StockManagement />} />
-        <Route path="/DataManagement" element={<DataManagement />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/AdminDashboard" element={<AdminDashboard />} />
+      <Route path="/StaffDashboard" element={<StaffDashboard />} />
+      <Route path="/RegistrasiPetugas" element={<RegistrasiPetugas />} />
+      <Route path="/StockManagement" element={<StockManagement />} />
+      <Route path="/DataManagement" element={<DataManagement />} />
+    </Routes>
   );
 };
 

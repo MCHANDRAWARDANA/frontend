@@ -61,7 +61,7 @@ const Login = () => {
     try {
       // Lakukan POST ke API login
       const response = await axios.post(
-        "http://localhost:5000/auth/login",
+        "https://backend-kasir-production.up.railway.app/auth/login",
         {
           Email: formData.Email,
           Password: formData.Password,

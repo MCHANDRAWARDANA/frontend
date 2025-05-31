@@ -56,7 +56,7 @@ const PendataanBarang = () => {
   // Ambil data kategori dari API GET /kategori/
   useEffect(() => {
     axios
-      .get("http://localhost:5000/kategori/")
+      .get("https://backend-kasir-production.up.railway.app/kategori/")
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : res.data.data;
         setKategoriList(data);
@@ -69,7 +69,7 @@ const PendataanBarang = () => {
   // Ambil data produk dari API GET /produk/
   useEffect(() => {
     axios
-      .get("http://localhost:5000/produk/")
+      .get("https://backend-kasir-production.up.railway.app/produk/")
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : res.data.data;
         setItems(data);
@@ -130,7 +130,7 @@ const PendataanBarang = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/produk/",
+          "https://backend-kasir-production.up.railway.app/produk/",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -179,7 +179,7 @@ const PendataanBarang = () => {
         formData.append("HargaModal", Number(form.HargaModal));
         formData.append("Foto", form.Foto);
         await axios.put(
-          `http://localhost:5000/produk/${form.ProdukID}/`, // tambahkan trailing slash jika perlu
+          `https://backend-kasir-production.up.railway.app/produk/${form.ProdukID}/`, // tambahkan trailing slash jika perlu
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
@@ -188,17 +188,22 @@ const PendataanBarang = () => {
       }
       // 2) Kalau tidak ada file, kirim JSON biasa
       else {
-        await axios.put(`http://localhost:5000/produk/${form.ProdukID}`, {
-          NamaProduk: form.NamaProduk,
-          kategoriID: form.kategoriID,
-          Harga: Number(form.Harga),
-          Stok: Number(form.Stok),
-          Diskon: Number(form.Diskon),
-          HargaModal: Number(form.HargaModal),
-        });
+        await axios.put(
+          `https://backend-kasir-production.up.railway.app/produk/${form.ProdukID}`,
+          {
+            NamaProduk: form.NamaProduk,
+            kategoriID: form.kategoriID,
+            Harga: Number(form.Harga),
+            Stok: Number(form.Stok),
+            Diskon: Number(form.Diskon),
+            HargaModal: Number(form.HargaModal),
+          }
+        );
       }
 
-      const res = await axios.get("http://localhost:5000/produk/");
+      const res = await axios.get(
+        "https://backend-kasir-production.up.railway.app/produk/"
+      );
       const data = Array.isArray(res.data) ? res.data : res.data.data;
       setItems(data);
       resetForm();
@@ -221,7 +226,9 @@ const PendataanBarang = () => {
   const confirmDeleteItem = async () => {
     if (!itemToDelete) return;
     try {
-      await axios.delete(`http://localhost:5000/produk/${itemToDelete}`);
+      await axios.delete(
+        `https://backend-kasir-production.up.railway.app/produk/${itemToDelete}`
+      );
       setItems(items.filter((item) => item.ProdukID !== itemToDelete));
       setLogs((prevLogs) => [
         ...prevLogs,

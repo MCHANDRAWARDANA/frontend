@@ -37,7 +37,7 @@ const StockPage = () => {
   // Fetch data produk dari API
   useEffect(() => {
     axios
-      .get("http://localhost:5000/produk/")
+      .get("https://backend-kasir-production.up.railway.app/produk/")
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : res.data.data;
         setItems(data);
@@ -50,7 +50,7 @@ const StockPage = () => {
   // Fetch data kategori dari API
   useEffect(() => {
     axios
-      .get("http://localhost:5000/kategori/")
+      .get("https://backend-kasir-production.up.railway.app/kategori/")
       .then((res) => {
         const data = Array.isArray(res.data) ? res.data : res.data.data;
         setKategoriList(data);
@@ -98,10 +98,13 @@ const StockPage = () => {
     );
 
     axios
-      .put(`http://localhost:5000/produk/${item.ProdukID}`, {
-        Stok: newStock,
-        lastUpdated: new Date().toISOString(),
-      })
+      .put(
+        `https://backend-kasir-production.up.railway.app/produk/${item.ProdukID}`,
+        {
+          Stok: newStock,
+          lastUpdated: new Date().toISOString(),
+        }
+      )
       .then((res) => {
         console.log("Produk berhasil di-update:", res.data);
       })
@@ -114,7 +117,9 @@ const StockPage = () => {
   const handleDelete = async (ProdukID) => {
     try {
       // Kirim request DELETE ke endpoint /produk/:ProdukID
-      await axios.delete(`http://localhost:5000/produk/${ProdukID}`);
+      await axios.delete(
+        `https://backend-kasir-production.up.railway.app/produk/${ProdukID}`
+      );
       console.log("Produk berhasil dihapus:", ProdukID);
       // Update state: hapus item dengan ProdukID yang bersangkutan
       setItems((prevItems) =>
@@ -151,9 +156,9 @@ const StockPage = () => {
             <tr>
               <th>Foto</th>
               <td>
-                <img src="http://localhost:5000/uploads/${item.Foto}" alt="${
-      item.NamaProduk
-    }" style="width:100px;height:auto;" />
+                <img src="https://backend-kasir-production.up.railway.app/uploads/${
+                  item.Foto
+                }" alt="${item.NamaProduk}" style="width:100px;height:auto;" />
               </td>
             </tr>
             <tr>

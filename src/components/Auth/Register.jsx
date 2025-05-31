@@ -94,7 +94,7 @@ const RegisterForm = () => {
     try {
       const payload = { UserName, Email, Password };
       const response = await axios.post(
-        "http://localhost:5000/pelanggan/",
+        "https://backend-kasir-production.up.railway.app/pelanggan/",
         payload,
         {
           headers: {

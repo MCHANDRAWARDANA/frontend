@@ -51,7 +51,9 @@ const RegistrasiPetugas = () => {
   useEffect(() => {
     const fetchPetugas = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/registrasi/");
+        const response = await axios.get(
+          "https://backend-kasir-production.up.railway.app/registrasi/"
+        );
         // Asumsi respons API mengembalikan data di response.data.data
         setPetugas(response.data.data);
       } catch (err) {
@@ -92,7 +94,7 @@ const RegistrasiPetugas = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/registrasi/",
+        "https://backend-kasir-production.up.railway.app/registrasi/",
         formData,
         {
           headers: {
@@ -125,7 +127,7 @@ const RegistrasiPetugas = () => {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/registrasi/${deleteModal.RegistrasiID}`
+        `https://backend-kasir-production.up.railway.app/registrasi/${deleteModal.RegistrasiID}`
       );
       const filteredPetugas = petugas.filter(
         (p) => p.RegistrasiID !== deleteModal.RegistrasiID
